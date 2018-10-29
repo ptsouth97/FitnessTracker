@@ -14,35 +14,20 @@ def main():
 	df = pd.read_csv(file_name)
 	overlap = df.loc[:,'Partial Overlap']
 	overlap_avg = overlap.mean()
+	overlap_sum = overlap.sum()
 
 	prior = df.loc[:,'Prior']
 	prior_avg = prior.mean()
+	prior_sum = prior.sum()
 
 	# Take 10,000 samples out of the binomial distribution: n_defaults
 	overlapping = np.random.binomial(32, overlap_avg, size=10000)
-	predicting = np.random.binomial(32, prior_avg, size=10000)	
+	prior = np.random.binomial(32, prior_avg, size=10000)	
 	guessing = np.random.binomial(32, 0.5, size=10000)
-	pmf(overlapping, predicting, guessing)
-	#hypothesis_test(predicting, guessing)
+	pmf(overlapping, overlap_sum, prior, prior_sum, guessing)
 
 
-def binom():
-	''' binomial distribution'''
-
-
-	# Compute CDF: x, y
-	x, y = ecdf(n_defaults)
-
-	# Plot the CDF with axis labels
-	_ = plt.plot(x, y, marker='.', linestyle='none')
-	_ = plt.xlabel('Overlaps with problem behavior')
-	_ = plt.ylabel('CDF')
-
-	# Show the plot
-	plt.show()
-
-
-def pmf(overlap, predict, guess):
+def pmf(overlap, o_sum, predict, p_sum, guess):
 	'''probability mass function'''
 
 	###################### PLOT GRAPH 1 #####################################
@@ -51,7 +36,8 @@ def pmf(overlap, predict, guess):
 	bins = np.arange(0, max(guess) + 1.5) - 0.5
 
 	# Generate histograms
-	plt.hist(guess, normed=True, bins=bins, label='chance')
+	values, bins, _ = plt.hist(guess, normed=True, bins=bins, label='chance')
+	p_area = (sum(values[0:(p_sum-1)])+sum(values[(p_sum+1):(len(bins)-1)]))/sum(values)
 	plt.hist(predict, normed=True, bins=bins, alpha=0.5, label='precedes')
 
 	# Set margins
@@ -60,9 +46,10 @@ def pmf(overlap, predict, guess):
 	# Label axes
 	_ = plt.xlabel('Number of problem behaviors preceded by elevated HR')
 	_ = plt.ylabel('probability')
-	_ = plt.title('Probability Mass Functions (PMF) for Chance and Elevated HR Precedes Problem Behavior')
+	_ = plt.title('PMF for Elevated HR Precedes Problem Behavior')
 	_ = plt.axvline(predict.mean(), color='k', linestyle='dashed', linewidth=1)
 	_ = plt.axvline(guess.mean(), color='k', linestyle='dashed', linewidth=1)
+	_ = plt.annotate('p='+str(p_area), (0,0.08))
 
 	# Make a legend
 	plt.legend(loc='upper left')
@@ -70,10 +57,18 @@ def pmf(overlap, predict, guess):
 	# Show the plot
 	plt.savefig('Predict.png')
 	plt.show()
+	plt.close()
 
 	####################### PLOT GRAPH 2 #####################################
 
-	plt.hist(guess, normed=True, bins=bins, label='chance')
+	# Compute bin edges: bins
+	bins = np.arange(0, max(guess) + 1.5) - 0.5
+	
+	# Generate histograms
+	values, bins, _ = plt.hist(guess, normed=True, bins=bins, label='chance')
+	
+	o_area = (sum(values[0:10])+sum(values[(o_sum-1):(len(bins)-1)]))/sum(values)
+
 	plt.hist(overlap, normed=True, bins=bins, alpha=0.5, label='overlap')
 
 	# Set margins
@@ -82,9 +77,10 @@ def pmf(overlap, predict, guess):
 	# Label axes
 	_ = plt.xlabel('Number of problem behaviors overlapping with elevated HR')
 	_ = plt.ylabel('probability')
-	_ = plt.title('Probability Mass Functions (PMF) for Chance and Elevated HR Overlaps with Problem Behavior')
+	_ = plt.title('PMF for Elevated HR Overlaps with Problem Behavior')
 	_ = plt.axvline(overlap.mean(), color='k', linestyle='dashed', linewidth=1)
 	_ = plt.axvline(guess.mean(), color='k', linestyle='dashed', linewidth=1)
+	_ = plt.annotate('p='+str(o_area), (0,0.08))
 
 	# Make a legend
 	plt.legend(loc='upper left')

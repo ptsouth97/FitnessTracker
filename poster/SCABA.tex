@@ -127,7 +127,6 @@
 		\item An online form was created to collect information about each incidence of the subject's problem behavior from parents, teachers, and other caregivers
 		\item HR information (i.e., bpm vs time) was collected from the Fitbit and downloaded into a spreadsheet
 		\item The time and duration of each problem behavior was plotted to overlay time series data of the subject's HR to look for correlations between the two
-		\item Information regarding the administration of emergency medication during problem behaviors was also recorded
 	\end{itemize}
 
 \end{alertblock}
@@ -151,7 +150,6 @@
 		\item Below are examples of daily data collection showing heart rate versus time of day in blue
 		\item Incidents of problem behavior are shown as red horizontal lines with the length corresponding to the duration of the episode
 		\item These incidents are also annotated with text giving the onset time of the problem behavior followed by its duration
-		\item A green star annotation was also used when the subject's emergency medication was administered
 	\end{itemize}
 	
 \end{alertblock}
@@ -170,7 +168,7 @@
 %	EXAMPLE 1
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Example 1: Partial Overlap}
+\begin{block}{Ex 1: Partial Overlap, Not Preceding Onset}
 	
 	\begin{figure}
 		\includegraphics[width=0.8\linewidth]{Example1.png}
@@ -183,24 +181,24 @@
 %	EXAMPLE 2
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Example 2: HR Elevation Precedes Onset}
+\begin{block}{Ex 2: No Overlap, Not Preceding Onset}
 	
 	\begin{figure}
 		\includegraphics[width=0.8\linewidth]{Example2.png}
-		\caption{Data collected on 3/21/2018 shows two incidents with elevated HR preceding the reported onset of the problem behavior. Both were scored as a '1' for Partial Overlap and '1' for Precedes Onset.}
+		\caption{Data collected on 4/25/2018 demonstrates a problem behavior that is not preceded by an elevated HR nor does it overlap with an elevated HR. This was scored as a '0' for Partial Overlap and '0' for Precedes Onset. }
 	\end{figure}
 	
 \end{block}
 
 %----------------------------------------------------------------------------------------
-%	EXAMPLE 3
+%	Overlap Probability Mass Function
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Example 3: HR Data Unavailable}
+\begin{block}{Overlap Probability Mass Function}
 	
 	\begin{figure}
-		\includegraphics[width=0.8\linewidth]{Example3.png}
-		\caption{Data collected on 3/30/2018 shows a problem behavior that occurred while the Fitbit charge was low and not collecting HR information. This data point was excluded from analysis.}
+		\includegraphics[width=0.8\linewidth]{Overlap.png}
+		\caption{For 32 incidents, chance would average 16 overlaps. The study found 21 overlaps with a 12\% probability of attaining this value by chance.}
 	\end{figure}
 	
 \end{block}
@@ -213,40 +211,40 @@
 \begin{column}{\onecolwid}\vspace{-.6in} % The second column within column 2 (column 2.2)
 
 %----------------------------------------------------------------------------------------
+%	EXAMPLE 3
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Ex 3: Partial Overlap, Preceding Onset}
+	
+	\begin{figure}
+		\includegraphics[width=0.8\linewidth]{Example3.png}
+		\caption{Data collected on 3/21/2018 shows two incidents with partial overlap and elevated HR preceding the reported onset. This was scored as a '1' for Partial Overlap and '1' for Precedes Onset.}
+	\end{figure}
+	
+\end{block}
+
+%----------------------------------------------------------------------------------------
 %	EXAMPLE 4
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Example 4: No Overlap}
+\begin{block}{Ex 4: No Overlap, Preceding Onset}
 	
 	\begin{figure}
 		\includegraphics[width=0.8\linewidth]{Example4.png}
-		\caption{Data collected on 4/25/2018 demonstrates a problem behavior that is not preceded by an elevated HR nor does it overlap with an elevated HR. This was scored as a '0' for Partial Overlap and '0' for Precedes Onset. }
+		\caption{Data collected on 3/23/2018 shows an elevated HR following the reported onset of problem behavior. This was scored as a '0' for Partial Overlap and '1' for Precedes Onset.}
 	\end{figure}
 	
 \end{block}
 
 %----------------------------------------------------------------------------------------
-%	EXAMPLE 5
+%	Precedes Probability Mass Function
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Example 5: HR Elevation Follows Onset}
+\begin{block}{Precedes Probability Mass Function}
 	
 	\begin{figure}
-		\includegraphics[width=0.8\linewidth]{Example5.png}
-		\caption{Data collected on 3/24/2018 shows an elevated HR following the reported onset of problem behavior. This was scored as a '1' for Partial Overlap and '0' for Precedes Onset.}
-	\end{figure}
-	
-\end{block}
-
-%----------------------------------------------------------------------------------------
-%	EXAMPLE 6
-%----------------------------------------------------------------------------------------
-
-\begin{block}{Example 6: Multiple Problem Behaviors}
-	
-	\begin{figure}
-		\includegraphics[width=0.8\linewidth]{Example6.png}
-		\caption{Data collected on 3/27/2018 demonstrates multiple problem behaviors on one day. Each was scored separately.}
+		\includegraphics[width=0.8\linewidth]{Predict.png}
+		\caption{For 32 incidents, chance would average 16 precedes. The study found 15 precedes with a 76\% probability of attaining this value by chance.}
 	\end{figure}
 	
 \end{block}
@@ -294,18 +292,18 @@
 			\hline\hline
 			3/21/2018 & 1 & 1\\
 			\hline\hline
-			3/21/2018 & 1 & 1\\
-			\hline\hline
-			3/23/2018 & 0 & 1\\
-			\hline\hline
-			3/24/2018 & 1 & 0\\
-			\hline\hline
-			3/27/2018 & 0 & 0\\
-			\hline\hline
-			3/27/2018 & 0 & 0\\
-			\hline\hline
-			3/28/2018 & 1 & 1\\
-			\hline\hline
+			%3/21/2018 & 1 & 1\\
+			%\hline\hline
+			%3/23/2018 & 0 & 1\\
+			%\hline\hline
+			%3/24/2018 & 1 & 0\\
+			%\hline\hline
+			%3/27/2018 & 0 & 0\\
+			%\hline\hline
+			%3/27/2018 & 0 & 0\\
+			%\hline\hline
+			%3/28/2018 & 1 & 1\\
+			%\hline\hline
 			%3/28/2018 & 1 & 0\\
 			%\hline\hline
 			%3/28/2018 & 0 & 0\\
@@ -332,7 +330,7 @@
 			%\hline\hline
 			%4/18/2018 & 1 & 0\\
 			%\hline\hline
-			\hline\hline
+			%\hline\hline
 			... & ... & ...\\
 			%\hline\hline
 			%4/19/2018 & 1 & 1\\
@@ -342,16 +340,16 @@
 			%4/20/2018 & 1 & 1\\
 			%\hline\hline
 			%4/20/2018 & 1 & 1\\
-			\hline\hline
-			4/23/2018 & 1 & 0\\
-			\hline\hline
-			4/23/2018 & 1 & 1\\
-			\hline\hline
-			4/23/2018 & 1 & 1\\
-			\hline\hline
-			4/24/2018 & 1 & 1\\
-			\hline\hline
-			4/25/2018 & 0 & 0\\
+			%\hline\hline
+			%4/23/2018 & 1 & 0\\
+			%\hline\hline
+			%4/23/2018 & 1 & 1\\
+			%\hline\hline
+			%4/23/2018 & 1 & 1\\
+			%\hline\hline
+			%4/24/2018 & 1 & 1\\
+			%\hline\hline
+			%4/25/2018 & 0 & 0\\
 			\hline\hline
 			5/7/2018 & 0 & 0\\
 			\hline\hline
@@ -363,8 +361,8 @@
 	\end{center}
 
 	\begin{itemize}
-		\item The reported time period of a problem behavior overlapped with a HR greater than 100 bpm on 65.6\% of episodes
-		\item A HR greater than 100 bpm preceded the reported onset of problem behavior on 46.9\% of episodes
+		\item The reported time period of a problem behavior overlapped with a HR greater than 100 bpm on 65.6\% of episodes. This represents 21 of 32 episodes, a value that would be expected 12\% of the time by chance.
+		\item A HR greater than 100 bpm preceded the reported onset of problem behavior on 46.9\% of episodes. This represents 21 of 32 episodes, a value that would be expected 76\% of the time by chance.
 		
 	\end{itemize}
 	
@@ -377,8 +375,10 @@
 \begin{alertblock}{Discussion}
 	
 	\begin{itemize}
-		\item A strong relationship was not established between elevated HR and reported times of problem behavior
+		\item A marginal relationship was established between the overlap elevated HR and reported times of problem behavior
+		\item No relationship was established between the elevated HR and preceding the onset of reported times of problem behavior
 		\item The study suffered from problems with the Fitbit battery being low during problem behaviors
+		\item The accuracy of the HR monitoring of the Fitbit was contingent upon proper placement on the wrist which could be adjusted by the subject
 		\item There were also problems with the reliability of the reported onset/offset times (i.e., not reporting an accurate onset time due to dealing with the problem behavior itself)
 		\item Allowing for a certain degree of error in reporting the onset time may also improve the relationship
 		\item The HR criteria of 100 bpm is somewhat arbitrary and adjusting this value may yield better results
