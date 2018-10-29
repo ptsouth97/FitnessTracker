@@ -3,8 +3,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt	
 import numpy as np
-from ecdf import ecdf
-from bootstrap import draw_bs_reps
 
 
 def main():
@@ -89,36 +87,6 @@ def pmf(overlap, o_sum, predict, p_sum, guess):
 	plt.savefig('Overlap.png')
 	plt.show()
 
-
-def hypothesis_test(predict, guess):
-	''' Do a hypothesis test'''
-
-	# Compute the difference in mean sperm count: diff_means
-	diff_means = np.mean(predict) - np.mean(guess)
-
-	# Compute mean of pooled data: mean_count
-	mean_count = np.mean(np.concatenate((predict, guess)))
-
-	# Generate shifted data sets
-	predict_shifted = predict - np.mean(predict) + mean_count
-	guess_shifted = guess - np.mean(guess) + mean_count
-
-	# Generate bootstrap replicates
-	bs_reps_predict = draw_bs_reps(predict_shifted, np.mean, size=10000)
-	bs_reps_guess = draw_bs_reps(guess_shifted, np.mean, size=10000)
-
-	# Get replicates of difference of means: bs_replicates
-	bs_replicates = bs_reps_predict - bs_reps_guess
-
-	# Compute and print p-value: p
-	p = np.sum(bs_replicates >= np.mean(predict) - np.mean(guess)) / len(bs_replicates)
-	print('p-value =', p)
-
-
-'''def test(predict, guess)
-	 another way
-
-	perm_replicates = draw_perm_reps('''
 
 if __name__ == '__main__':
 	main()
