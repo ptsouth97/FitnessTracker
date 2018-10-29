@@ -8,20 +8,26 @@ import numpy as np
 def main():
 	''' main function'''
 
+	# Read the data file and assign to a pandas dataframe
 	file_name = 'data.csv'
 	df = pd.read_csv(file_name)
+
+	# Slice the column containing 'Partial Overlap' values
 	overlap = df.loc[:,'Partial Overlap']
 	overlap_avg = overlap.mean()
 	overlap_sum = overlap.sum()
 
+	# Slice the column containing 'Prior' values
 	prior = df.loc[:,'Prior']
 	prior_avg = prior.mean()
 	prior_sum = prior.sum()
 
-	# Take 10,000 samples out of the binomial distribution: n_defaults
+	# Take 10,000 samples out of the binomial distribution for each case
 	overlapping = np.random.binomial(32, overlap_avg, size=10000)
 	prior = np.random.binomial(32, prior_avg, size=10000)	
 	guessing = np.random.binomial(32, 0.5, size=10000)
+
+	# Call function to plot the probability mass functions
 	pmf(overlapping, overlap_sum, prior, prior_sum, guessing)
 
 

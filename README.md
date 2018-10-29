@@ -1,30 +1,26 @@
 # Fitness Tracker
 
 ## Overview
-This application's purpose is to classify what types of animals are captured on a [Browning Trailcamera](https://browningtrailcameras.com/). The user must provide a folder with the images to be examined. The application goes through each image in the folder and the user records how many deer or hogs are in the picture. The deer are further classified by sex. The application then looks up the dawn and dusk times for the timestamp on the image from [almanac.com](https://www.almanac.com/) and determines if the image was made during daylight hours or not. Moonphase information is also collected from [moongiant.com](https://www.moongiant.com) as well as temperature from [wunderground.com](www.wunderground.com). The data is then display to look for correlations between number of daytime deer images and moon phase and also correlations between temperature and overall number of deer photographed. Results are stored in a SQLite database.
+This application's purpose is to analyze data from an experiment designed to look for a relationship between elevated heart rate (HR) and [automatically reinforced problem behavior](https://www.ncbi.nlm.nih.gov/pubmed/7938787). Specifically, the experiment is looking at the overlap between elevated HR > 100 bpm and reported times of problem behavior as well as when elevated HR > 100 bpm precedes the onset of the reported times of problem behavior.
 
-The application was tested using Python 3.5 running on Ubuntu and relies on:
-* [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/)
+The application was tested using Python 3.6 running on Ubuntu and relies on:
 * [Matplotlib](https://matplotlib.org/)
 * [Numpy](http://www.numpy.org/)
 * [Pandas](https://pandas.pydata.org/)
-* [Pillow](https://pillow.readthedocs.io/en/5.1.x/)
-* [Requests](http://docs.python-requests.org/en/master/)
-* [SQLAlchemy](https://www.sqlalchemy.org/)
 
 ## How it works
 
 1. Clone the repository
-2. To run from the main application from the command line, use 'chmod +x app_trailcam.py' 
-3. In the working directory, there is a folder called 'deer'
-4. After obtaining images, add them to the 'deer' folder in a named subfolder of your choice
-5. When you run the program, you will be asked to enter the name of this folder
-6. The program will iterate over the images in this folder
-7. For each image you will be asked if you want to record this image (i.e., is there an animal of interest in the frame)
-8. If so, you will be asked how many deer/hogs and the sex of the deer
-9. The program will determine the temperature, moonphase, and sunset/sunrise based on the time of observation 
-10. The program will create a Pandas dataframe with the relevant information
-11. This dataframe can then be appended to a SQLite database
+2. To run from the main application from the command line, use 'chmod +x binomial_distribution.py' 
+3. In the working directory, there is a file name 'data.csv' containing the experimental data
+4. Executing the application will load this data into a pandas dataframe
+5. The columns of 'Partial Overlap' and 'Prior' will be sliced and their averages computed
+6. The application will generate a probability mass function (pmf) based on 10,000 simulations of the binomial distribution for each case ('Partial Overlap', 'Precedes', and 'Chance')
+7. The pmfs for 'Partial Overlap and Chance' and 'Precedes and Chance' are graphed using a matplotlib histogram
+8. A confidence interval of 95% (alpha  = 0.05) was chosen to establish statistical significane 
+9. A two-tailed test was used, so each tail required a p-value < 0.025  (alpha / 2 = 0.025)
+10. The p-value was calculated by summing the area under the 'Chance' curve up the experimentally determined averages
+11. This p-value was annotated on the plot
 
 ## Future plans
-* Implementing a machine learning algorithm to automatically identify animals in the pictures
+* Re-doing experimental design to account for potential flaws in the original study
