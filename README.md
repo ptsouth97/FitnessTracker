@@ -11,7 +11,7 @@ The application was tested using Python 3.6 running on Ubuntu and relies on:
 ## How it works
 
 1. Clone the repository
-2. To run from the main application from the command line, use 'chmod +x binomial_distribution.py' 
+2. To run from the main application from the command line, use 'chmod +x app_fitnesstracker.py' 
 3. In the working directory, there is a file name 'data.csv' containing the experimental data
 4. Executing the application will load this data into a pandas dataframe
 5. The columns of 'Partial Overlap' and 'Precedes' will be sliced and their averages computed

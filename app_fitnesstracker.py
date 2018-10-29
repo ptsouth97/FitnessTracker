@@ -6,7 +6,7 @@ import numpy as np
 
 
 def main():
-	''' main function'''
+	''' main function for loading data, calculating metrics, and calling pmf function'''
 
 	# Read the data file and assign to a pandas dataframe
 	file_name = 'data.csv'
