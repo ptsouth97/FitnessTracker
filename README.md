@@ -1,9 +1,9 @@
 # Fitness Tracker
 
 ## Overview
-This application's purpose is to analyze data from an experiment designed to look for a relationship between elevated heart rate (HR) and [automatically reinforced problem behavior](https://www.ncbi.nlm.nih.gov/pubmed/7938787). Specifically, the experiment is looking at the overlap between elevated HR > 100 bpm and reported times of problem behavior as well as when elevated HR > 100 bpm precedes the onset of the reported times of problem behavior. Smart watches utilize a technique known as [photoplethysmography](https://en.wikipedia.org/wiki/Photoplethysmogram) that employs LED lights and measures the ratio of red and green reflected light in the skin on the wrist in a process that is described [here](https://exist.io/blog/fitness-trackers-heart-rate/) 
+This application's purpose is to analyze data from an experiment designed to look for a relationship between elevated heart rate (HR) and [automatically reinforced problem behavior](https://www.ncbi.nlm.nih.gov/pubmed/7938787). Specifically, the experiment is looking at the overlap between elevated HR > 100 bpm and reported times of problem behavior as well as when elevated HR > 100 bpm precedes the onset of the reported times of problem behavior. Smart watches utilize a technique known as [photoplethysmography](https://en.wikipedia.org/wiki/Photoplethysmogram) that employs LED lights and measures the ratio of red and green reflected light in the skin on the wrist in a process that is described [here](https://exist.io/blog/fitness-trackers-heart-rate/).
 
-The application was tested using Python 3.6 running on Ubuntu and relies on:
+The application was tested using Python 3.6.6 running on Ubuntu and relies on:
 * [Matplotlib](https://matplotlib.org/)
 * [Numpy](http://www.numpy.org/)
 * [Pandas](https://pandas.pydata.org/)
