@@ -29,12 +29,13 @@ def main():
 	precedes_sum = precedes.sum()
 
 	# Calculate chance sum (how many occurences expected by chance)
-	chance_sum = len(precedes) * 0.5
+	chance_prob = 0.05272392315
+	chance_sum = len(precedes) * chance_prob
 
 	# Take 10,000 samples out of the binomial distribution for each case
 	overlapping = np.random.binomial(overlap_len, overlap_avg, size=10000)
 	preceding = np.random.binomial(precedes_len, precedes_avg, size=10000)	
-	chance = np.random.binomial(precedes_len, 0.5, size=10000)
+	chance = np.random.binomial(precedes_len, chance_prob, size=10000)
 
 	# Call function to plot the probability mass function for OVERLAP
 	pmf(overlapping, overlap_sum, chance, chance_sum, 'Overlaps' )
@@ -47,7 +48,7 @@ def pmf(condition_df, condition_sum, chance_df, chance_sum, condition):
 	''' Plots probability mass function along with p-value'''
 
 	# Compute bin edges: bins
-	bins = np.arange(0, max(chance_df)+1.5) - 0.5
+	bins = np.arange(0, max(condition_df)+1.5) - 0.5
 
 	# Generate chance histogram
 	values, bins, _ = plt.hist(chance_df, normed=True, bins=bins, label='Chance')
@@ -55,7 +56,7 @@ def pmf(condition_df, condition_sum, chance_df, chance_sum, condition):
 	# Generate condition histogram
 	_ = plt.hist(condition_df, normed=True, bins=bins, alpha=0.5, label=condition)
 
-	calc_bins = np.arange(min(chance_df), max(chance_df))
+	calc_bins = np.arange(min(chance_df), max(condition_df))
 
 	# Calculate p-value/2 (two-tail test) for when the value is greater or less than the avg
 	if condition_sum > chance_sum:
@@ -70,10 +71,11 @@ def pmf(condition_df, condition_sum, chance_df, chance_sum, condition):
 	# Label axes
 	_ = plt.xlabel('Number of successes')
 	_ = plt.ylabel('probability')
-	_ = plt.title('PMF for Elevated HR ' +condition+ ' Problem Behavior')
+	_ = plt.suptitle('PMF for Elevated HR ' +condition+ ' Problem Behavior')
+	_ = plt.title('p/2='+str(p))
 	_ = plt.axvline(condition_df.mean(), color='k', linestyle='dashed', linewidth=1)
 	_ = plt.axvline(chance_df.mean(), color='k', linestyle='dashed', linewidth=1)
-	_ = plt.annotate('p/2='+str(p), (0,0.08))
+	#_ = plt.annotate('p/2='+str(p), (0,0.08))
 
 	# Make a legend
 	plt.legend(loc='upper left')
